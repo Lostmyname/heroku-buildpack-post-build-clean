@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+readonly BUILD_DIR=$1
+readonly CLEAN_FILES=${BUILD_DIR}/.slug-post-clean
+
+if [[ ! -n "${BUILD_DIR}" ]]; then
+  echo "No build directory specified - exiting"
+  exit 1
+fi
+
+if [[ ! -f "${CLEAN_FILES}" ]]; then
+  echo "Could not find .slug-post-clean file - exiting"
+  exit 1
+fi
+
+while read file; do
+  [[ ! -n "${file}" ]] && continue
+
+  if [[ -f "${file}" ]]; then
+    echo "Removing file ${file} from slug"
+    rm -f ${file}
+  elif [[ -d "${file}" ]]; then
+    echo "Removing directory ${file} from slug"
+    rm -rf ${file}
+  else
+    echo "Location ${file} not found - ignoring"
+  fi
+done <${CLEAN_FILES}

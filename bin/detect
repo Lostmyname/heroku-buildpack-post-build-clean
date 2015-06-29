@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+readonly BUILD_DIR=$1
+
+if [[ ! -n "${BUILD_DIR}" ]]; then
+  echo "No build directory specified - exiting"
+  exit 1
+fi
+
+if [[ ! -f "${BUILD_DIR}/.slug-post-clean" ]]; then
+  echo "Could not find .slug-post-clean file - exiting"
+  exit 1
+fi
