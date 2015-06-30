@@ -23,6 +23,19 @@ part of the slug.
 
 ## Usage
 
+You will need to use the [`heroku-buildpack-multi`
+buildpack](https://github.com/ddollar/heroku-buildpack-multi), and add
+your existing buildpack(s) to the `.buildpacks` file in your application
+repository. The post-build-clean buildpack **must** be last in the
+buildpack order:
+
+```
+# .buildpacks
+https://github.com/heroku/heroku-buildpack-nodejs
+https://github.com/heroku/heroku-buildpack-ruby
+https://github.com/Lostmyname/heroku-post-build-clean-buildpack
+```
+
 The `.slug-post-clean` file supports single-file and single-directory
 declarations only, e.g.:
 
