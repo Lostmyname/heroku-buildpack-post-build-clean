@@ -3,19 +3,19 @@
 set -euo pipefail
 
 readonly BUILD_DIR=$1
-readonly CLEAN_FILES=${BUILD_DIR}/.slug-post-clean
+readonly CLEAN_FILES=.slug-post-clean
 
 if [[ ! -n "${BUILD_DIR}" ]]; then
   echo "No build directory specified - exiting"
   exit 1
 fi
 
+cd ${BUILD_DIR}
+
 if [[ ! -f "${CLEAN_FILES}" ]]; then
   echo "Could not find .slug-post-clean file - exiting"
   exit 1
 fi
-
-cd ${BUILD_DIR}
 
 while read file; do
   [[ ! -n "${file}" ]] && continue
