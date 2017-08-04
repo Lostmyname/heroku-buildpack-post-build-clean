@@ -13,3 +13,6 @@ if [[ ! -f "${BUILD_DIR}/.slug-post-clean" ]]; then
   echo "Could not find .slug-post-clean file - exiting"
   exit 1
 fi
+
+echo "POST BUILD CLEAN"
+exit 0
