@@ -33,7 +33,7 @@ buildpack order:
 # .buildpacks
 https://github.com/heroku/heroku-buildpack-nodejs
 https://github.com/heroku/heroku-buildpack-ruby
-https://github.com/Lostmyname/heroku-post-build-clean-buildpack
+https://github.com/Lostmyname/heroku-buildpack-post-build-clean
 ```
 
 The `.slug-post-clean` file supports single-file and single-directory
