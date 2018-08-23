@@ -23,17 +23,12 @@ part of the slug.
 
 ## Usage
 
-You will need to use the [`heroku-buildpack-multi`
-buildpack](https://github.com/ddollar/heroku-buildpack-multi), and add
-your existing buildpack(s) to the `.buildpacks` file in your application
-repository. The post-build-clean buildpack **must** be last in the
-buildpack order:
+You can use [Heroku's multi-buildpack support](https://devcenter.heroku.com/articles/using-multiple-buildpacks-for-an-app)
+to add  this buildpack to your existing buildpack(s). The post-build-clean buildpack **must** be last in the
+buildpack order, which the following command will ensure:
 
-```
-# .buildpacks
-https://github.com/heroku/heroku-buildpack-nodejs
-https://github.com/heroku/heroku-buildpack-ruby
-https://github.com/Lostmyname/heroku-buildpack-post-build-clean
+```sh-session
+heroku buildpacks:add wonderbly/post-build-clean
 ```
 
 The `.slug-post-clean` file supports single-file and single-directory
@@ -47,3 +42,11 @@ why_does_this_app_even_contain_a.tiff
 
 I might expand it to support file globs, but for the moment it's not
 necessary and the testing implications give me the willies.
+
+## Using the latest source code
+
+The `wonderbly/post-build-clean` buildpack from the [Heroku Buildpack Registry](https://devcenter.heroku.com/articles/buildpack-registry) represents the latest stable version of the buildpack. If you'd like to use the source code from this Github repository, you can set your buildpack to the Github URL:
+
+```sh-session
+heroku buildpacks:add https://github.com/Lostmyname/heroku-buildpack-post-build-clean.git
+```
